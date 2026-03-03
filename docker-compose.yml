@@ -30,7 +30,7 @@ services:
     # TODO: you will need to add to this
     build: ./frontend
     ports:
-      -"8000:80"
+      - "8000:80"
     depends_on:
       - backend
 
