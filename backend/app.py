@@ -36,9 +36,9 @@ def create_student():
     if not data or 'name' not in data or 'course' not in data:
         return jsonify({'error': 'missing name or course'}), 404
 
-    # mark = data.get('mark', 0)
+    mark = data.get('mark', 0)
 
-    new_student = db.insert_student(data['name'], data['course'], data['mark'])
+    new_student = db.insert_student(data['name'], data['course'], mark)
     return jsonify(new_student), 200
 
 
@@ -76,8 +76,8 @@ def delete_student(student_id):
     return: The deleted student
     """
     deleted = db.delete_student(student_id)
-    if not deleted:
-        return jsonify({'error: student not found'}), 404
+    if deleted is None:
+        return jsonify({'error': 'student not found'}), 404
 
     return jsonify(deleted), 200
 
