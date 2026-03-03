@@ -21,7 +21,7 @@ services:
     environment:
       - DB_HOST=db
       - DB_NAME=marksdb
-      - DB_USER=markuser
+      - DB_USER=marksuser
       - DB_PASSWORD=markspass
     depends_on:
       - db
@@ -30,7 +30,7 @@ services:
     # TODO: you will need to add to this
     build: ./frontend
     ports:
-      - "8000:80"
+      - "8080:80"
     depends_on:
       - backend
 
