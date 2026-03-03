@@ -5,16 +5,32 @@ services:
       POSTGRES_USER: marksuser
       POSTGRES_PASSWORD: markspass
       POSTGRES_DB: marksdb
-    # Pre-seed script is required as a volume to load mock database
-    # Data inside the container is lost on restart unless you persist it with a volume.
+    volumes:
+    # mount the init script
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    # the volume's name for persistent data
+      - persist_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
 
   backend:
     # TODO: you will need to add to this
+    build: ./backend
+    ports:
+      - "5000:5000"
+    environment:
+      - DB_HOST=db
+      - DB_NAME=marksdb
+      - DB_USER=markuser
+      - DB_PASSWORD=markspass
+    depends_on:
+      - db
 
   frontend:
     # TODO: you will need to add to this
+    build: ./frontend
+    ports:
+      -"8000:80"
 
   automark:
     build: ./automark
@@ -23,3 +39,6 @@ services:
       - db
     profiles:
       - debug
+
+volumes:
+  persist_data:

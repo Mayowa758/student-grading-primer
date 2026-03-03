@@ -64,7 +64,7 @@ def delete_student(student_id):
 @app.route("/stats")
 def get_stats():
     """
-    Route to show the stats of all student marks 
+    Route to show the stats of all student marks
     return: An object with the stats (count, average, min, max)
     """
     pass  # replace with your implementation
