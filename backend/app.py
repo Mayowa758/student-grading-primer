@@ -39,7 +39,7 @@ def create_student():
     # addressing edge case
     existing_students = db.get_all_students()
     for s in existing_students:
-        if s['name'] == student_data['name'] and s['course'] == student_data['course']:
+        if s['name'] == data['name'] and s['course'] == data['course']:
             return jsonify({'error': 'student already has a mark for this course'})
 
     mark = data.get('mark', 0)
