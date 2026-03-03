@@ -36,6 +36,12 @@ def create_student():
     if not data or 'name' not in data or 'course' not in data:
         return jsonify({'error': 'missing name or course'}), 404
 
+    # addressing edge case
+    existing_students = db.get_all_students()
+    for s in existing_students:
+        if s['name'] == student_data['name'] and s['course'] == student_data['course']:
+            return jsonify({'error': 'student already has a mark for this course'})
+
     mark = data.get('mark', 0)
 
     new_student = db.insert_student(data['name'], data['course'], mark)
