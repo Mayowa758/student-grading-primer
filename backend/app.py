@@ -17,8 +17,16 @@ def get_students():
     Route to fetch all students from the database
     return: Array of student objects
     """
+<<<<<<< HEAD
     students = db.get_all_students()
     return jsonify(students), 200
+=======
+    # TODO: replace with your implementation. This is a mock response
+    return jsonify([
+        {'course': 'COMP1531', 'id': 1, 'mark': 85, 'name': 'Alice Zhang'},
+        {'course': 'COMP1531', 'id': 2, 'mark': 72, 'name': 'Bob Smith'}
+    ]), 200
+>>>>>>> origin/eric/stats-feature
 
 
 @app.route("/students", methods=["POST"])
@@ -32,6 +40,7 @@ def create_student():
     """
 
     # Getting the request body - replace with your implementation
+<<<<<<< HEAD
     data = request.json
     if not data or 'name' not in data or 'course' not in data:
         return jsonify({'error': 'missing name or course'}), 404
@@ -46,6 +55,11 @@ def create_student():
 
     new_student = db.insert_student(data['name'], data['course'], mark)
     return jsonify(new_student), 200
+=======
+    student_data = request.json
+
+    pass
+>>>>>>> origin/eric/stats-feature
 
 
 @app.route("/students/<int:student_id>", methods=["PUT"])
@@ -59,6 +73,7 @@ def update_student(student_id):
     """
     pass  # replace with your implementation
 
+<<<<<<< HEAD
     # Getting the request body - replace with your implementation
     data = request.json
 
@@ -74,6 +89,8 @@ def update_student(student_id):
 
     return jsonify(updated), 200
 
+=======
+>>>>>>> origin/eric/stats-feature
 
 @app.route("/students/<int:student_id>", methods=["DELETE"])
 def delete_student(student_id):
@@ -81,16 +98,21 @@ def delete_student(student_id):
     Route to delete student by id
     return: The deleted student
     """
+<<<<<<< HEAD
     deleted = db.delete_student(student_id)
     if deleted is None:
         return jsonify({'error': 'student not found'}), 404
 
     return jsonify(deleted), 200
+=======
+    pass  # replace with your implementation
+>>>>>>> origin/eric/stats-feature
 
 
 @app.route("/stats")
 def get_stats():
     """
+<<<<<<< HEAD
     Route to show the stats of all student marks
     return: An object with the stats (count, average, min, max)
     """
@@ -106,6 +128,13 @@ def get_stats():
         "max": max(marks)
     }
     return jsonify(stats), 200
+=======
+    Route to show the stats of all student marks 
+    return: An object with the stats (count, average, min, max)
+    """
+    pass  # replace with your implementation
+
+>>>>>>> origin/eric/stats-feature
 
 @app.route("/")
 def health():
