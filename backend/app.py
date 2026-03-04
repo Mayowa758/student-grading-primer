@@ -37,10 +37,10 @@ def create_student():
         return jsonify({'error': 'missing name or course'}), 404
 
     # addressing edge case
-    existing_students = db.get_all_students()
-    for s in existing_students:
-        if s['name'] == data['name'] and s['course'] == data['course']:
-            return jsonify({'error': 'student already has a mark for this course'})
+    # existing_students = db.get_all_students()
+    # for s in existing_students:
+    #     if s['name'] == data['name'] and s['course'] == data['course']:
+    #         return jsonify({'error': 'student already has a mark for this course'}), 404
 
     mark = data.get('mark', 0)
 
